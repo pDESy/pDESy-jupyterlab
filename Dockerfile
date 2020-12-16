@@ -13,7 +13,7 @@ RUN python -m pip install --upgrade pip && pip install \
     poetry \
     jupyterlab
 
-RUN pip install git+https://github.com/pDESy/pDESy.git@v0.3.1rc
+RUN pip install pDESy
 # RUN pip install git+https://github.com/pDESy/pDESy.git
 
 RUN jupyter serverextension enable --py jupyterlab
