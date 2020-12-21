@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 
 RUN python -m pip install --upgrade pip && pip install \ 
     poetry \
+    pandas \
     jupyterlab
 
 RUN pip install pDESy
