@@ -47,7 +47,7 @@ This is the repository for executing [pDESy](https://github.com/pDESy/pDESy) in 
         ```sh
         $ mkdir notebook
         $ docker run --rm --name pdesy-jupyterlab -d -p 8888:8888 \
-            -v `pwd`/notebook:/notebook -w /notebook \
+            -v $(pwd)/notebooks:/notebook -w /notebook \
             taiga4112/pdesy-jupyterlab \
             jupyter-lab --no-browser --port=8888 --ip=0.0.0.0 \
             --allow-root --NotebookApp.token='pDESy'
