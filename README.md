@@ -3,7 +3,7 @@ This is the repository for executing [pDESy](https://github.com/pDESy/pDESy) in 
 
 ## How to run
 
-### A. By using docker-compose.yml
+### A. By using docker-compose.yml (Only Linux and MacOS)
 1. [Install Docker](https://docs.docker.com/get-docker/) in your PC.
 
 1. [Install Docker Compose](https://docs.docker.com/compose/install/) in your PC.
@@ -16,7 +16,7 @@ This is the repository for executing [pDESy](https://github.com/pDESy/pDESy) in 
 1. Build.
     ```sh
     $ cd pDESy-jupyterlab
-    $ docker-compose build
+    $ docker-compose build # --no-cache should be added after updating Dockerfile
     ```
 
 1. Run.
@@ -27,32 +27,29 @@ This is the repository for executing [pDESy](https://github.com/pDESy/pDESy) in 
 1. Access [http://localhost:8888/](http://localhost:8888/)
     - Default access token is `pDESy`. Please change this access token by editing Dockerfile.
 
+1. Down.
+    ```sh
+    $ docker-compose down
+    ```
 
-### B. By using DockerHub image
+### B. By using Dockerfile
 
 1. [Install Docker](https://docs.docker.com/get-docker/) in your PC.
 
 1. Download & Run
-    
-    - Ex.A: Just testing (not saved in your PC) 
-        ```sh
-        $ docker run --rm --name pdesy-jupyterlab -d -p 8888:8888 \
-          taiga4112/pdesy-jupyterlab \
-          jupyter-lab --no-browser --port=8888 --ip=0.0.0.0 \
-          --allow-root --NotebookApp.token='pDESy'
-        ```
-        - Default access token is `pDESy`. Please change this access token
 
-    - Ex.B: Run and Save the notebooks on your current directory in your PC
+    - Run and Save the notebooks on your current directory in your Linux or MacOS PC
         ```sh
-        $ mkdir notebook
-        $ docker run --rm --name pdesy-jupyterlab -d -p 8888:8888 \
-            -v $(pwd)/notebooks:/notebook -w /notebook \
-            taiga4112/pdesy-jupyterlab \
-            jupyter-lab --no-browser --port=8888 --ip=0.0.0.0 \
-            --allow-root --NotebookApp.token='pDESy'
-        ``` 
-    
+        $ docker build -t pdesy-jupyterlab . # --no-cache should be added after updating Dockerfile
+        $ docker run --rm --name pdesy-jupyterlab -d -p 8888:8888 -v $(pwd)/notebooks:/notebooks -w /notebooks pdesy-jupyterlab jupyter-lab --no-browser --port=8888 --ip=0.0.0.0 --allow-root --NotebookApp.token='pDESy'
+        ```
+
+    - Run and Save the notebooks on your current directory in your Linux or MacOS PC
+        ```sh
+        $ docker build -t pdesy-jupyterlab . # --no-cache should be added after updating Dockerfile
+        $ docker run --rm --name pdesy-jupyterlab -d -p 8888:8888 -v ${pwd}/notebooks:/notebooks -w /notebooks pdesy-jupyterlab jupyter-lab --no-browser --port=8888 --ip=0.0.0.0 --allow-root --NotebookApp.token='pDESy'
+        ```
+
 1. Access [http://localhost:8888/](http://localhost:8888/)
     - Default access token is `pDESy`. Please change this access token.
 
