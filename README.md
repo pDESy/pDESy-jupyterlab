@@ -44,7 +44,7 @@ This is the repository for executing [pDESy](https://github.com/pDESy/pDESy) in 
         $ docker run --rm --name pdesy-jupyterlab -d -p 8888:8888 -v $(pwd)/notebooks:/notebooks -w /notebooks pdesy-jupyterlab jupyter-lab --no-browser --port=8888 --ip=0.0.0.0 --allow-root --NotebookApp.token='pDESy'
         ```
 
-    - Run and Save the notebooks on your current directory in your Linux or MacOS PC
+    - Run and Save the notebooks on your current directory in your Windows PC
         ```sh
         $ docker build -t pdesy-jupyterlab . # --no-cache should be added after updating Dockerfile
         $ docker run --rm --name pdesy-jupyterlab -d -p 8888:8888 -v ${pwd}/notebooks:/notebooks -w /notebooks pdesy-jupyterlab jupyter-lab --no-browser --port=8888 --ip=0.0.0.0 --allow-root --NotebookApp.token='pDESy'
