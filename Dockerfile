@@ -21,7 +21,7 @@ RUN jupyter serverextension enable --py jupyterlab
 
 # nodejs for plotly
 # https://github.com/nodesource/distributions/blob/master/README.md
-RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - \
+RUN curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash - \
     && sudo apt-get install -y nodejs
 
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build \
