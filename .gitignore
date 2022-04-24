@@ -1,3 +1,6 @@
+# output text
+*.txt
+
 # os junk
 .DS_Store
 
