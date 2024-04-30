@@ -3,7 +3,7 @@ USER root
 WORKDIR /usr/src/app
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update && apt-get install --no-install-recommends -y \
+RUN apt update && apt install --no-install-recommends -y \
     curl \
     sudo \
     git && \
@@ -11,22 +11,16 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 
 RUN python -m pip install --upgrade pip && pip install \
     poetry \
+    numpy \
+    matplotlib \
     pandas \
-    jupyterlab
+    pDESy
 
-RUN pip install pDESy
 # RUN pip install git+https://github.com/pDESy/pDESy.git
 
-RUN jupyter serverextension enable --py jupyterlab
-
-# nodejs for plotly
-# https://github.com/nodesource/distributions/blob/master/README.md
-RUN curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash - \
-    && sudo apt-get install -y nodejs
-
-RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build \
-    && jupyter labextension install jupyterlab-plotly --no-build \
-    && jupyter labextension install plotlywidget --no-build \
-    && jupyter lab build
+# JupyterLab and Plotly
+RUN pip install plotly==5.21.0
+RUN pip install "jupyterlab>=3" "ipywidgets>=7.6"
+RUN pip install jupyter-dash
 
 ENV DEBIAN_FRONTEND dialog
